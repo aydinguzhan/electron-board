@@ -1,0 +1,4 @@
+export enum PAGES {
+  DASHBOARD = "DASHBOARD",
+  PROFILE = "PROFILE",
+}
