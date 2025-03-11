@@ -69,3 +69,30 @@ body {
 .statics-card-box {
   flex: 1;
 }
+.form-body {
+  display: grid;
+  grid-template-columns: 1fr; /* Default: Tek sütun */
+  gap: 16px; /* Öğeler arası boşluk */
+}
+
+@media (min-width: 768px) {
+  .form-body {
+    grid-template-columns: repeat(2, 1fr); /* md ve üstü: 2 sütun */
+  }
+}
+
+.form-partical {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 115px;
+}
+
+.form-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}

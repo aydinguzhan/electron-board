@@ -4,6 +4,7 @@ import { TabsProfile } from "../component/TabsProfile";
 import { MyProfile } from "../component/MyProfile";
 import { ArrowDownOutlined, MinusOutlined } from "@ant-design/icons";
 import { MyCalendar } from "../component/MyCalendar";
+import { Jobs } from "./Jobs";
 
 const dataArray = [
   {
@@ -48,8 +49,8 @@ const items: TabsProps["items"] = [
   },
   {
     key: "3",
-    label: "Analyze",
-    children: "Content of Tab Pane 3",
+    label: "Jobs",
+    children: <Jobs />,
   },
 ];
 

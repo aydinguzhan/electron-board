@@ -1,9 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   AppstoreOutlined,
-  ContainerOutlined,
   DesktopOutlined,
-  MailOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PieChartOutlined,
@@ -14,57 +12,40 @@ import { Context } from "../contexts/mainContext";
 import { PAGES } from "../utils/Enums";
 type MenuItem = Required<MenuProps>["items"][number];
 
-
-
 export default function MenuBar() {
   const [collapsed, setCollapsed] = useState(false);
-    const {setPage} = React.useContext(Context);
-    const items: MenuItem[] = [
-      { key: "1", icon: <PieChartOutlined />, label: "Dashboard", onClick:()=>setPage(PAGES.DASHBOARD) },
-      { key: "2", icon: <DesktopOutlined />, label: "Profil" ,onClick : ()=>setPage(PAGES.PROFILE)},
-      { key: "3", icon: <ContainerOutlined />, label: "Option 3" ,  onClick	: ()=>console.log("dasds")},
-      {
-        key: "sub1",
-        label: "Navigation One",
-        icon: <MailOutlined />,
-        children: [
-          { key: "5", label: "Option 5" },
-          { key: "6", label: "Option 6" },
-          { key: "7", label: "Option 7" },
-          { key: "8", label: "Option 8" },
-        ],
-      
-      },
-      {
-        key: "sub2",
-        label: "Navigation Two",
-        icon: <AppstoreOutlined />,
-        children: [
-          { key: "9", label: "Option 9" },
-          { key: "10", label: "Option 10" },
-          {
-            key: "sub3",
-            label: "Submenu",
-            children: [
-              { key: "11", label: "Option 11" },
-              { key: "12", label: "Option 12" },
-            ],
-          },
-        ],
-      },
-    ];
+  const { setPage } = React.useContext(Context);
+  const items: MenuItem[] = [
+    {
+      key: "1",
+      icon: <PieChartOutlined />,
+      label: "Dashboard",
+      onClick: () => setPage(PAGES.DASHBOARD),
+    },
+    {
+      key: "2",
+      icon: <DesktopOutlined />,
+      label: "Profil",
+      onClick: () => setPage(PAGES.PROFILE),
+    },
+    {
+      key: "sub1",
+      label: "Analiz",
+      icon: <AppstoreOutlined />,
+      children: [
+        { key: "5", label: "Analiz-1", onClick: () => setPage(PAGES.ANALIZ_1) },
+        { key: "6", label: "Analiz-2", onClick: () => setPage(PAGES.ANALIZ_2) },
+        { key: "7", label: "Analiz-3", onClick: () => setPage(PAGES.ANALIZ_3) },
+      ],
+    },
+  ];
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
 
   return (
     <>
-      <Button
-      className="w-full"
-        type="primary"
-        onClick={toggleCollapsed}
-    
-      >
+      <Button className="w-full" type="primary" onClick={toggleCollapsed}>
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
       <Menu

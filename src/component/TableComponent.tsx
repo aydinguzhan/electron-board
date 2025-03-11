@@ -1,105 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Table } from "antd";
-import type { TableColumnsType, TableProps } from "antd";
-
-interface DataType {
-  key: React.Key;
-  name: string;
-  age: number;
-  address: string;
-}
-
-const columns: TableColumnsType<DataType> = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    filters: [
-      {
-        text: "Joe",
-        value: "Joe",
-      },
-      {
-        text: "Category 1",
-        value: "Category 1",
-      },
-      {
-        text: "Category 2",
-        value: "Category 2",
-      },
-    ],
-    filterMode: "tree",
-    filterSearch: true,
-    onFilter: (value, record) => record.name.startsWith(value as string),
-    width: "30%",
-  },
-  {
-    title: "Age",
-    dataIndex: "age",
-    sorter: (a, b) => a.age - b.age,
-  },
-  {
-    title: "Address",
-    dataIndex: "address",
-    filters: [
-      {
-        text: "London",
-        value: "London",
-      },
-      {
-        text: "New York",
-        value: "New York",
-      },
-    ],
-    onFilter: (value, record) => record.address.startsWith(value as string),
-    filterSearch: true,
-    width: "40%",
-  },
-];
-
-const data: DataType[] = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Jim Red",
-    age: 32,
-    address: "London No. 2 Lake Park",
-  },
-];
-
-const onChange: TableProps<DataType>["onChange"] = (
-  pagination,
-  filters,
-  sorter,
-  extra
-) => {
-  console.log("params", pagination, filters, sorter, extra);
-};
 
 export function TableComponent() {
+  const columns: any = [
+    {
+      title: "Job",
+      dataIndex: "jobTitle",
+      filterSearch: true,
+      width: "30%",
+    },
+    {
+      title: "Description",
+      dataIndex: "jobDescription",
+      // sorter: (a, b) => a.age - b.age,
+    },
+    {
+      title: "Topic",
+      dataIndex: "topic",
+      // filters: [
+      //   {
+      //     text: "London",
+      //     value: "London",
+      //   },
+      //   {
+      //     text: "New York",
+      //     value: "New York",
+      //   },
+      // ],
+      // onFilter: (value, record) => record.address.startsWith(value as string),
+      filterSearch: true,
+      width: "40%",
+    },
+  ];
+
+  const [tableData, setTableData] = useState([]);
+  useEffect(() => {
+    (async () => {
+      if (window?.electronAPI?.getAllJob) {
+        // electronAPI'nin var olduğundan emin ol
+        try {
+          const jobs = await window.electronAPI.getAllJob();
+          console.log(jobs);
+          setTableData(jobs);
+        } catch (error) {
+          console.error("Failed to fetch jobs:", error);
+        }
+      } else {
+        console.error("electronAPI is not available");
+      }
+    })();
+  }, []);
   return (
     <div>
-      <Table<DataType>
-        columns={columns}
-        dataSource={data}
-        onChange={onChange}
-      />
+      <Table<any> columns={columns} dataSource={tableData} />
     </div>
   );
 }

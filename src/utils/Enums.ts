@@ -1,4 +1,7 @@
 export enum PAGES {
   DASHBOARD = "DASHBOARD",
   PROFILE = "PROFILE",
+  ANALIZ_1 = "ANALIZ_1",
+  ANALIZ_2 = "ANALIZ_2",
+  ANALIZ_3 = "ANALIZ_3",
 }
