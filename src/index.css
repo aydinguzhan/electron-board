@@ -69,7 +69,11 @@ body {
 .statics-card-box {
   flex: 1;
 }
+.form-container {
+}
 .form-body {
+  width: 70%;
+  padding: 10px;
   display: grid;
   grid-template-columns: 1fr; /* Default: Tek sütun */
   gap: 16px; /* Öğeler arası boşluk */
@@ -94,5 +98,5 @@ body {
   justify-content: start;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
+  margin: auto 10px;
 }

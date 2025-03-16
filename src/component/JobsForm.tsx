@@ -53,7 +53,6 @@ export function JobsForm() {
         return (
           <Form>
             {contextHolder}
-            <div className="form-buttons"></div>
             <div className="form-container">
               <div className="form-body">
                 <div className="form-partical">
